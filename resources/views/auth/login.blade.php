@@ -1,21 +1,24 @@
 <x-layout>
-    <div class="p-2">
-       <h1 class="text-4xl mb-4">Login</h1>
-        <form action="/login" method="post">
-            @csrf
-            <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="joe@example.com">
-                @error('email')<p class="ms-4 text-sm text-red-500">{{$message}}</p>@enderror
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password">
-                @error('password')<p class="ms-4 text-sm text-red-500">{{$message}}</p>@enderror
-            </div>
-
-            <a href="/register" class="me-2 hover:underline">Register Now</a>
-            <button type="submit" class="hover:underline">Login</button>
-        </form>
+    <div class="w-[500px] flex flex-col justify-center bg-white p-[40px]">
+        <h1 class="text-4xl font-semibold mb-2">Login</h1>
+        <h2 class="mb-6 text-black/60">Don't have an account? <a href="/register" class="text-blue-500 font-semibold">Register Now</a></h2>
+        <div class="">
+            <form action="/login" method="post">
+                @csrf
+                <div class="flex mb-4">
+                    <input id="email" name="email" type="email" placeholder="Enter your email" required autocomplete="off"
+                           class=" p-4 rounded-xl focus-visible:outline-0 flex-1 bg-gray-50 border-gray-200 border" >
+                    @error('email')<p class="ms-4 text-sm text-red-500">{{$message}}</p>@enderror
+                </div>
+                <div class="flex mb-6">
+                    <input id="password" name="password" type="password" placeholder="Enter your password" required
+                           class=" p-4 rounded-xl focus-visible:outline-0 flex-1 bg-gray-50 border-gray-200 border" >
+                    @error('password')<p class="ms-4 text-sm text-red-500">{{$message}}</p>@enderror
+                </div>
+                <div class="flex justify-center items-center">
+                    <button type="submit" class="w-3/5 py-2 px-4 rounded-xl bg-gray-100 hover:bg-gray-50 mx-auto font-semibold text-black/60">Login</button>
+                </div>
+            </form>
+        </div>
     </div>
 </x-layout>

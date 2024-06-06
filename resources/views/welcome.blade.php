@@ -18,7 +18,7 @@
     <div class="p-4 mx-20 w-5/6 h-svh bg-white rounded-t-2xl shadow-md">
         <ul class="w-4/6 mx-auto">
             @foreach($todos as $todo)
-                <li class="mt-2 px-2 pb-1.5 border-b-2 border-gray-100">{{$todo->title}}</li>
+                <li class="mt-2 px-2 pb-1.5 border-b-2 border-gray-100 flex justify-between group">{{$todo->title}}<a href="/todos/{{$todo->id}}" class="text-white group-hover:text-black/60">Edit</a></li>
             @endforeach
         </ul>
     </div>

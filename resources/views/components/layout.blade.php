@@ -8,8 +8,7 @@
     @vite('resources/css/app.css')
     <title>2Do</title>
 </head>
-<body class="bg-gray-50 border-gray-200 flex flex-col justify-center items-center max-h-screen">
-
+<body class="bg-gray-50 flex flex-col justify-center items-center h-screen">
     {{$slot}}
 </body>
 </html>
