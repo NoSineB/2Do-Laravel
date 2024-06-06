@@ -6,12 +6,12 @@
             <form action="/register" method="post">
                 @csrf
                 <div class="flex mb-4">
-                    <input id="name" name="name" type="text" placeholder="Enter your name" required autocomplete="off"
+                    <input id="name" name="name" type="text" placeholder="Enter your name" required
                            class=" p-4 rounded-xl focus-visible:outline-0 flex-1 bg-gray-50 border-gray-200 border" value="{{old('name')}}">
                     @error('name')<p class="ms-4 text-sm text-red-500">{{$message}}</p>@enderror
                 </div>
                 <div class="flex mb-4">
-                    <input id="email" name="email" type="email" placeholder="Enter your email" required autocomplete="off"
+                    <input id="email" name="email" type="email" placeholder="Enter your email" required
                            class=" p-4 rounded-xl focus-visible:outline-0 flex-1 bg-gray-50 border-gray-200 border" value="{{old('email')}}">
                     @error('email')<p class="ms-4 text-sm text-red-500">{{$message}}</p>@enderror
                 </div>
