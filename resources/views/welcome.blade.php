@@ -13,6 +13,16 @@
             @endforeach
         </ul>
     </div>
+    <div class="p-4">
+        <form action="/todos" method="post">
+            @csrf
+            <div>
+                <input id="todo" name="todo" type="text" placeholder="Enter your todo here ...." required class="w-[600px]">
+                @error('todo')<p class="ms-4 text-sm text-red-500">{{$message}}</p>@enderror
+            </div>
+            <button type="submit">Create</button>
+        </form>
+    </div>
     <form action="/logout" method="post" id="logout-form" class="hidden">
         @csrf
         @method('DELETE')

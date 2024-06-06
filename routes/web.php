@@ -6,6 +6,7 @@ use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TodoController::class, 'index'])->middleware('auth')->name('home');
+Route::post('/todos', [TodoController::class, 'create'])->middleware('auth');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login' ,[SessionController::class, 'create'])->name('login');
