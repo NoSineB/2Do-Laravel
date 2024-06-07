@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="w-[500px] flex flex-col justify-center bg-white p-[40px]">
+    <div class="w-[500px] flex flex-col justify-center bg-white p-[40px] rounded-2xl shadow-lg">
         <h1 class="text-4xl font-semibold mb-2">Login</h1>
         <h2 class="mb-6 text-black/60">Don't have an account? <a href="/register" class="text-blue-500 font-semibold">Register Now</a></h2>
         <div class="">

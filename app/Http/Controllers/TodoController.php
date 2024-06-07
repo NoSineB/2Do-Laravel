@@ -14,7 +14,7 @@ class TodoController extends Controller
         ]);
     }
 
-    public function create(Request $request){
+    public function store(Request $request){
         $validate = $request->validate([
            'todo' => 'required'
         ]);
@@ -25,5 +25,15 @@ class TodoController extends Controller
         ]);
 
         return redirect('/');
+    }
+
+    public function edit(Todo $todo){
+        return view('edit',[
+            'todo' => $todo
+        ]);
+    }
+
+    public function update(Request $request, Todo $todo){
+        dd($request->all());
     }
 }
