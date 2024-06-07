@@ -5,11 +5,15 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [TodoController::class, 'index'])->middleware('auth')->name('home');
-Route::post('/todos', [TodoController::class, 'store'])->middleware('auth');
-Route::get('/todos/{todo}/edit', [TodoController::class, 'edit'])->middleware('auth');
-Route::patch('/todos/{todo}', [TodoController::class, 'update'])->middleware('auth');
-Route::delete('/todos/{todo}', [TodoController::class, 'destroy'])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/', [TodoController::class, 'index'])->name('home');
+    Route::post('/todos', [TodoController::class, 'store']);
+    Route::get('/todos/{todo}/edit', [TodoController::class, 'edit'])->can('edit', 'todo');
+    Route::patch('/todos/{todo}', [TodoController::class, 'update'])->can('edit', 'todo');
+    Route::delete('/todos/{todo}', [TodoController::class, 'destroy'])->can('edit', 'todo');
+
+    Route::delete('/logout', [SessionController::class, 'destroy']);
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login' ,[SessionController::class, 'create'])->name('login');
@@ -18,7 +22,4 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterUserController::class, 'create']);
     Route::post('/register', [RegisterUserController::class, 'store']);
 });
-
-
-Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
