@@ -9,9 +9,18 @@ use Illuminate\Support\Facades\Auth;
 class TodoController extends Controller
 {
     public function index(){
+        $todos = Todo::query()
+            ->where('user_id', Auth::id())
+            ->orderBy('updated_at', 'desc')
+            ->get()
+            ->groupBy('completed');
+
+
         return view('welcome',[
-            'todos' => Todo::query()->where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get()
+            'todos' => $todos[0] ?? [],
+            'completed' => $todos[1] ?? [],
         ]);
+
     }
 
     public function store(Request $request){
@@ -47,6 +56,13 @@ class TodoController extends Controller
 
     public function destroy(Todo $todo){
         $todo->delete();
+        return redirect('/');
+    }
+
+    public function complete(Todo $todo){
+        $todo->update([
+            'completed' => !$todo->completed
+        ]);
         return redirect('/');
     }
 }

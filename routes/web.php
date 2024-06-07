@@ -11,6 +11,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/todos/{todo}/edit', [TodoController::class, 'edit'])->can('edit', 'todo');
     Route::patch('/todos/{todo}', [TodoController::class, 'update'])->can('edit', 'todo');
     Route::delete('/todos/{todo}', [TodoController::class, 'destroy'])->can('edit', 'todo');
+    Route::post('/todos/{todo}/completed', [TodoController::class, 'complete'])->can('edit', 'todo');
 
     Route::delete('/logout', [SessionController::class, 'destroy']);
 });
